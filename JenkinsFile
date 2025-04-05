@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/Aryan-Raj-Singh-Rathore/PhoneBook.git'
+                git branch: 'main', url: 'https://github.com/Aryan-Raj-Singh-Rathore/PhoneBook.git'
             }
         }
          stage('Terraform Init') {

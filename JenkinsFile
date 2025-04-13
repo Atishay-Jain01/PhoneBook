@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        AZURE_CREDENTIALS_ID = 'jenkins-pipeline-sp'
+        AZURE_CREDENTIALS_ID = 'azure-service-principal-react'
         RESOURCE_GROUP       = 'WebServiceRG'
         APP_SERVICE_NAME     = 'AryanRathoreWebApp0412'
         TF_WORKING_DIR       = '.'
@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/Aryan-Raj-Singh-Rathore/PhoneBook.git'
+                git branch: 'main', url: 'https://github.com/Atishay-Jain01/PhoneBook.git'
             }
         }
          stage('Terraform Init') {

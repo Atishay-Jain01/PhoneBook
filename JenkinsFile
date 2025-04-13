@@ -11,7 +11,7 @@ pipeline {
         RESOURCE_GROUP       = 'WebServiceRG'
         APP_SERVICE_NAME     = 'AryanRathoreWebApp0412'
         TF_WORKING_DIR       = '.'
-        AZ_CLI_PATH          = "${env.AZ_CLI_PATH}"
+        AZ_CLI_PATH          = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
     }
 
     stages {

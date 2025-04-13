@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        terraform 'terraform-1.7.5'
+    }
+
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal-react'
         RESOURCE_GROUP       = 'WebServiceRG'

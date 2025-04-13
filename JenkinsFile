@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         terraform 'terraform-1.7.5'
+        nodejs 'NodeJS'
     }
 
     environment {
@@ -10,6 +11,7 @@ pipeline {
         RESOURCE_GROUP       = 'WebServiceRG'
         APP_SERVICE_NAME     = 'AryanRathoreWebApp0412'
         TF_WORKING_DIR       = '.'
+        AZ_CLI_PATH          = "${env.AZ_CLI_PATH}"
     }
 
     stages {
@@ -72,8 +74,7 @@ pipeline {
         withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
             bat """
             powershell Compress-Archive -Path build/* -DestinationPath build.zip -Force
-            az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path build.zip --type zip
-
+            %AZ_CLI_PATH%\\az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path build.zip --type zip
             """
         }
     }

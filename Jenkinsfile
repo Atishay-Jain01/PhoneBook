@@ -9,7 +9,7 @@ pipeline {
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal-react'
         RESOURCE_GROUP       = 'WebServiceRG'
-        APP_SERVICE_NAME     = 'AryanRathoreWebApp0412'
+        APP_SERVICE_NAME     = 'react-assignment-041425'
         TF_WORKING_DIR       = '.'
         AZ_CLI_PATH          = 'C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin'
     }

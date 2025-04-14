@@ -49,8 +49,8 @@ pipeline {
            steps {
                withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
                    bat """
-                   powershell Compress-Archive -Path build/* -DestinationPath build.zip -Force
-                   %AZ_CLI_PATH%\\az webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path build.zip --type zip
+                   tar -a -c -f build.zip build
+                   "%AZ_CLI_PATH%\\az.cmd" webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path build.zip --type zip
                    """
                 }
             }

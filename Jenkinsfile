@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        terraform 'terraform-1.7.5'
+        terraform 'terraform-1.11.4'
         nodejs 'NodeJS'
     }
 
@@ -20,7 +20,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Atishay-Jain01/PhoneBook.git'
             }
         }
-         stage('Terraform Init') {
+         stage('Terraform Init, Plan & Apply') {
             steps {
                 withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
                     bat """
@@ -30,26 +30,12 @@ pipeline {
                     echo "Initializing Terraform..."
                     terraform init
                     terraform plan -out=tfplan
-                    """
-                }
-            }
-        }
-
-
-        stage('Terraform Apply') {
-            steps {
-                withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
-                    bat """
-                    echo "Navigating to Terraform Directory: %TF_WORKING_DIR%"
-                    cd %TF_WORKING_DIR%
-                    echo "Applying Terraform Plan..."
                     terraform apply -auto-approve tfplan
                     """
                 }
             }
         }
 
-    
 
         stage('Build') {
             steps {

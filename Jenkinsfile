@@ -48,10 +48,8 @@ pipeline {
        stage('Deploy') {
            steps {
                withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
-                   bat """
-                   tar -a -c -f build.zip build
-                   "%AZ_CLI_PATH%\\az.cmd" webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path build.zip --type zip
-                   """
+                   bat "tar -a -c -f build.zip build"
+                   bat "%AZ_CLI_PATH%\\az.cmd webapp deploy --resource-group %RESOURCE_GROUP% --name %APP_SERVICE_NAME% --src-path build.zip --type zip"
                 }
             }
         }
